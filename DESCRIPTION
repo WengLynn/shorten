@@ -1,0 +1,10 @@
+Package: shorten
+Type: Package
+Title: Reduce the length of your sequences by removing the conserved sites.
+Version: 0.1.0
+Author: Lynn Weng
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: Reduce the length of your sequences by removing the conserved sites.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true

@@ -6,6 +6,7 @@ Description: When you try to remove your conserved sites to reduce sequence leng
 
 To access it try:
 
+     library(devtools)
      install_github("WengLynn/shorten")
 
 To use it try:

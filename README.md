@@ -1,13 +1,12 @@
 # shorten
-This is developed NOT for SARS-CoV-2.
+
+Description: When you try to remove your conserved sites to reduce sequence length for further analysis such as calling adaptive mutations, I will recommend you to use it.
 
 # 1.1 shorten_site (depends on tidyr and stringr)
 
 To access it try:
 
      install_github("WengLynn/shorten")
-
-Description: When you try to remove your conserved sites to reduce sequence length for further analysis such as calling adaptive mutations, I will recommend you to use it.
 
 To use it try:
 

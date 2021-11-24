@@ -8,7 +8,7 @@ shorten_site <- function(filename,key_pattern,lev,cutlength = 0) {
   reffa =read.table(ref_file,sep = "\n")
   reffa = as.character(reffa[2,1])
   mmref = unlist(strsplit(reffa,""))
-  mmref = mmref[1:33669]
+
   mmcount = length(mmref)
   ref=ifelse(mmref=="-",1,0)
   barcount = sum(ref)
@@ -28,7 +28,7 @@ shorten_site <- function(filename,key_pattern,lev,cutlength = 0) {
     if(length(oneline) ==0){break}
     if(length(grep(">",oneline)) == 0) {
       mm = unlist(strsplit(oneline,""))
-      mm = mm[1:33669]
+
       cnt_seq[which(mm!=mmref)]=cnt_seq[which(mm!=mmref)]+1
     }
   }

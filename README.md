@@ -8,6 +8,7 @@ To access it try:
 
      library(devtools)
      install_github("WengLynn/shorten")
+     library(shorten)
 
 To use it try:
 
@@ -19,7 +20,7 @@ To use it try:
 
   lev, how many sites different to each other will be remain.
 
-  hm, how many difference sites will be treated as a difference.
+  hm, how many difference sites will be treated as a difference. (default 0 as more than one difference.)
   
   Start, the start site on refference.
   

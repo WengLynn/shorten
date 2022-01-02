@@ -19,6 +19,10 @@ To use it try:
 
   lev, how many sites different to each other will be remain.
 
-  cutlength, the length of bp to be removed at the head and tail of your sequences
+  hm, how many difference sites will be treated as a difference.
+  
+  Start, the start site on refference.
+  
+  End, the end site on refference.
 
-# Slow Down and Good Night
+# Good Night

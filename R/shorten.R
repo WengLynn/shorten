@@ -1,4 +1,4 @@
-shorten_site <- function(filename,key_pattern,lev,cutlength = 0) {
+shorten_site <- function(filename,key_pattern,Start=300,End=29000,hm =0) {
   # coln -------------------------------------------------------------------
   library(tidyr)
   library(stringr)
@@ -8,7 +8,6 @@ shorten_site <- function(filename,key_pattern,lev,cutlength = 0) {
   reffa =read.table(ref_file,sep = "\n")
   reffa = as.character(reffa[2,1])
   mmref = unlist(strsplit(reffa,""))
-
   mmcount = length(mmref)
   ref=ifelse(mmref=="-",1,0)
   barcount = sum(ref)
@@ -28,29 +27,36 @@ shorten_site <- function(filename,key_pattern,lev,cutlength = 0) {
     if(length(oneline) ==0){break}
     if(length(grep(">",oneline)) == 0) {
       mm = unlist(strsplit(oneline,""))
-
+      mm[which(mm == "N"|mm=="n")]<- mmref[which(mm == "N"|mm=="n")]
       cnt_seq[which(mm!=mmref)]=cnt_seq[which(mm!=mmref)]+1
     }
   }
   close(con)
-  cnt_seq = cnt_seq[(cutlength+1):(mmcount-cutlength)]
-  cnt_want= cnt_seq[which(cnt_seq > lev & cnt_seq < (mmcount-lev))]
-  coln = coln[which(cnt_seq > lev)]
+  colnstart = which(coln == Start)
+  colnend =which(coln == End)
+  coln = coln[colnstart:colnend]
+  cnt_seq = cnt_seq[colnstart:colnend]
+  coln =coln[which(cnt_seq>hm)]
   write.table(coln,paste0(filename,"_mic_loc.txt"),col.names = F,row.names = F,sep = "",quote = F,append = F)
+
+# loop2 -------------------------------------------------------------------
+
 
 
   con <- file(filename, "r")
   while (1) {
     oneline = readLines(con, n = 1)
     if(length(oneline) ==0){break}
-    if(length(grep(">",oneline)) == 1){write.table(oneline,paste0(filename,"_mic.fasta"),col.names = F,row.names = F,sep = "\t",quote = F,append = T)}
+    if(length(grep(">",oneline)) == 1){write.table(oneline,paste0(filename,"_",Start,"_",End,"_mic.fasta"),col.names = F,row.names = F,sep = "\t",quote = F,append = T)}
     if(length(grep(">",oneline)) == 0) {
       mm = unlist(strsplit(oneline,""))
-      mm = mm[cnt_want]
+      mm = mm[colnstart:colnend]
+      mm= mm[which(cnt_seq>hm)]
       mm =paste(mm,collapse = "")
-      write.table(mm,paste0(filename,"_mic.fasta"),col.names = F,row.names = F,sep = "",quote = F,append = T)
+      write.table(mm,paste0(filename,"_",Start,"_",End,"_mic.fasta"),col.names = F,row.names = F,sep = "",quote = F,append = T)
     }
   }
   close(con)
 }
+
 

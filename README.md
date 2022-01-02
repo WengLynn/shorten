@@ -11,7 +11,7 @@ To access it try:
 
 To use it try:
 
-    shorten_site("filename.fasta","EPI_id",lev = 0,cutlength = 10)
+    shorten_site("filename.fasta","EPI_id",Start = 300, End = 29000,hm = 0)
 
 # parameters
   
